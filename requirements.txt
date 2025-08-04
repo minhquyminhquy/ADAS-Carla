@@ -1,0 +1,22 @@
+carla>=0.9.14
+numpy>=1.21.0
+opencv-python>=4.5.0
+Pillow>=8.3.0
+
+opencv-contrib-python>=4.5.0
+
+pandas>=1.3.0
+matplotlib>=3.4.0
+seaborn>=0.11.0
+
+# Configuration
+PyYAML>=5.4.0
+
+# Logging and utilities
+tqdm>=4.62.0
+colorlog>=6.6.0
+
+# ROS
+rclpy>=3.0.0
+sensor-msgs>=3.0.0
+geometry-msgs>=3.0.0
