@@ -34,7 +34,7 @@ class CarlaClient:
             logger.error(f"Failed to connect to Carla: {e}")
             return False
     
-    def load_world(self, map_name: str = "Town01") -> bool:
+    def load_world(self, map_name: str = "Town10HD_Opt") -> bool:
         """Load a specific world/map."""
         try:
             self.world = self.client.load_world(map_name)
@@ -45,7 +45,7 @@ class CarlaClient:
             logger.error(f"Failed to load world {map_name}: {e}")
             return False
     
-    def spawn_vehicle(self, vehicle_model: str = "vehicle.tesla.model3", 
+    def spawn_vehicle(self, vehicle_model: str = "vehicle.mini.cooper", 
                      spawn_point: Optional[carla.Transform] = None) -> bool:
         """Spawn a vehicle at specified location or random location."""
         try:
@@ -53,7 +53,7 @@ class CarlaClient:
             vehicle_bp = self.blueprint_library.find(vehicle_model)
             if not vehicle_bp:
                 logger.warning(f"Vehicle {vehicle_model} not found, using default")
-                vehicle_bp = self.blueprint_library.find("vehicle.tesla.model3")
+                vehicle_bp = self.blueprint_library.find("vehicle.mini.cooper")
             
             # Set spawn point
             if spawn_point is None:
@@ -216,7 +216,7 @@ def main():
         return
     
     # Load world
-    if not client.load_world("Town01"):
+    if not client.load_world("Town10HD_Opt"):
         logger.error("Failed to load world")
         return
     
@@ -224,7 +224,10 @@ def main():
     client.set_weather("ClearNoon")
     
     # Spawn vehicle
-    if not client.spawn_vehicle():
+    spawn_points = client.world.get_map().get_spawn_points()
+    spawn_point_index = 34 # Random for now, specific scenarios later
+    spawn_point_transform = spawn_points[spawn_point_index]
+    if not client.spawn_vehicle(spawn_point=spawn_point_transform):
         logger.error("Failed to spawn vehicle")
         return
     
