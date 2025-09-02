@@ -1,0 +1,3 @@
+[submodule "adas_system/third_party/ros-bridge"]
+	path = adas_system/third_party/ros-bridge
+	url = https://github.com/carla-simulator/ros-bridge.git
